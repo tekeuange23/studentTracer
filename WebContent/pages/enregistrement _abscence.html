@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>Nouvelles Abscences</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,7 +9,6 @@
       name="description"
       content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3"
     />
-    <title>Sidebar template</title>
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -22,17 +22,17 @@
     />
 
     <link
-      href="assets/dist/css/bootstrap.css"
+      href="../assets/dist/css/bootstrap.css"
       rel="stylesheet"
       id="bootstrap-css"
     />
     <link
-      href="assets/dist/css/bootstrap.min.css"
+      href="../assets/dist/css/bootstrap.min.css"
       rel="stylesheet"
       id="bootstrap-css"
     />
     <link
-      href="assets/dist/css/bootstrap-reboot.css"
+      href="../assets/dist/css/bootstrap-reboot.css"
       rel="stylesheet"
       id="bootstrap-css"
     />
@@ -40,7 +40,7 @@
       href="https://use.fontawesome.com/releases/v5.0.6/css/all.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/sideMenu.css" />
+    <link rel="stylesheet" href="../css/sideMenu.css" />
     <style>
       #show-sidebar {
         top: 4em;
@@ -60,7 +60,7 @@
       rel="canonical"
       href="https://getbootstrap.com/docs/4.5/examples/offcanvas/"
     />
-    <link href="assets/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="./assets/dist/css/bootstrap.css" rel="stylesheet" />
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -77,11 +77,23 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="css/offcanvas.css" rel="stylesheet" />
+    <link href="../css/offcanvas.css" rel="stylesheet" />
     <!-----------------------------------PROPRE A LA PAGE------------------------------------------------------->
     <style>
       .mb-3 > label {
         font-weight: bold;
+      }
+      .entete .col-md-1.order-md-1 > p{
+        margin: 0px;
+        padding: 0px;
+        font-weight: bold;
+      }
+      .entete .col-md-4.order-md-1{
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        size: 2rem;
       }
     </style>
     <meta
@@ -94,16 +106,16 @@
       content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
     />
     <meta name="generator" content="Jekyll v4.0.1" />
-    <title>Checkout example · Bootstrap</title>
+    <title>Checkout example Â· Bootstrap</title>
 
-    <link href="css/floating-labels-tuteur.css" rel="stylesheet" />
+    <link href="../css/floating-labels-tuteur.css" rel="stylesheet" />
     <link
       rel="canonical"
       href="https://getbootstrap.com/docs/4.5/examples/checkout/"
     />
 
     <!-- Bootstrap core CSS -->
-    <link href="assets/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="../assets/dist/css/bootstrap.css" rel="stylesheet" />
 
     <style>
       .bd-placeholder-img {
@@ -122,21 +134,17 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="css/enregistrement_personnel.css" rel="stylesheet" />
-    <link href="css/enregistrement_eleve.css" rel="stylesheet" />
+    <link href="../css/enregistrement_personnel.css" rel="stylesheet" />
+    <link href="../css/enregistrement_eleve.css" rel="stylesheet" />
 
     <!--<script src="../scripts/enregistrer_eleve.js" defer></script>-->
-    <script src="scripts/sideMenu.js" defer></script>
+    <script src="../scripts/sideMenu.js" defer></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
   </head>
 
   <body>
-    <div id="backdrop"></div>
-
-    
-
     <div class="page-wrapper chiller-theme toggled">
       <!-- ****************************************** SIDE MENU ************************************************ -->
       <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
@@ -410,7 +418,7 @@
         <div class="py-5 text-center">
           <img
             class="d-block mx-auto mb-4"
-            src="assets/brand/bootstrap-solid.svg"
+            src="../assets/brand/bootstrap-solid.svg"
             alt=""
             width="72"
             height="72"
@@ -419,13 +427,258 @@
         </div>
 
         <div class="row">
-          <form method="POST" class="needs-validation" novalidate style="width: 100%;" action="enregistrement_eleve">
-            <!--TITRE-->
+          <form
+            method="POST"
+            class="needs-validation"
+            novalidate
+            style="width: 100%;"
+          >
+            <!--Journee-->
             <div class="row">
-              <div class="col-md-8 order-md-1">
-                <h3 class="mb-3">Informations sur l'eleve</h3>
+              <div class="col-md-12 order-md-1">
+                <div class="row">
+                  <h3 class="col-md-9 mb-3" for="date_fiche">
+                    Abscences au compte de la journee du:
+                  </h3>
+                  <div class="col-md-3 mb-3">
+                    <div class="input-group">
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="date_fiche"
+                        name="date_fiche"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+            <!--Salle-->
+            <div class="row">
+              <div class="col-md-12 order-md-1">
+                <div class="row">
+                  <h3 class="col-md-9 mb-3" for="date_fiche">
+                    Salle concernee:
+                  </h3>
+                  <div class="col-md-3 mb-3">
+                    <div class="form-label-group">
+                      <select
+                        id="salle"
+                        name="salle"
+                        class="custom-select d-block w-100"
+                      >
+                        <option value="">salle...</option>
+                        <option value="6eM1">6eM1</option>
+                        <option value="6eM2">6eM2</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+
+             <!--Entete1-->
+             <div class="row  entete">
+              <div class="col-md-8 offset-md-4 order-md-1">Horaires</div>
+            </div>
+            <!--Entete2-->
+            <div class="row  entete">
+              <div class="col-md-4 order-md-1">Nom et Prenom</div>
+              <div class="col-md-1 order-md-1">
+                <p>7h30</p>
+                <p>8h25</p>
+              </div>
+              <div class="col-md-1 order-md-1">
+                <p>8h25</p>
+                <p>9h20</p>
+              </div>
+              <div class="col-md-1 order-md-1">
+                <p>9h20</p>
+                <p>10h15</p>
+              </div>
+              <div class="col-md-1 order-md-1">
+                <p>10h30</p>
+                <p>11h20</p>
+              </div>
+              <div class="col-md-1 order-md-1">
+                <p>11h20</p>
+                <p>12h30</p>
+              </div>
+              <div class="col-md-1 order-md-1">
+                <p>12h20</p>
+                <p>13h15</p>
+              </div>
+              <div class="col-md-1 order-md-1">
+                <p>13h45</p>
+                <p>14h20</p>
+              </div>
+              <div class="col-md-1 order-md-1">
+                <p>14h20</p>
+                <p>15h30</p>
+              </div>
+            </div>
+
+            <!--Corp-->
+            <div class="row  corp">
+              <div class="col-md-4 order-md-1">TENE TEKEU ANGE LEONEL</div>
+
+              <div class="col-md-1 order-md-1">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" id="" name="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1 order-md-1">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" id="" name="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1 order-md-1">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" id="" name="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1 order-md-1">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" id="" name="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1 order-md-1">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" id="" name="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1 order-md-1">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" id="" name="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1 order-md-1">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" id="" name="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1 order-md-1">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" id="" name="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--Corp-->
+            <div class="row  corp">
+              <div class="col-md-4 order-md-1">TENE TEKEU ANGE LEONEL</div>
+
+              <div class="col-md-1 order-md-1">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" id="" name="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1 order-md-1">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" id="" name="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1 order-md-1">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" id="" name="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1 order-md-1">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" id="" name="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1 order-md-1">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" id="" name="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1 order-md-1">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" id="" name="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1 order-md-1">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" id="" name="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1 order-md-1">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" id="" name="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <br /><br /><br />
+
 
             <div class="row" style="width: 100%;">
               <!--INFO ELEVE-->
@@ -437,9 +690,9 @@
                       type="text"
                       class="form-control"
                       id="firstName"
-                      placeholder="Nom_eleve"
+                      placeholder="Nom"
                       value=""
-                      name="nom_eleve"
+                      name="nom"
                       required
                     />
                     <div class="invalid-feedback">
@@ -453,9 +706,9 @@
                       type="text"
                       class="form-control"
                       id="lastName"
-                      placeholder="Prenom_eleve"
+                      placeholder="Prenom"
                       value=""
-                      name="prenom_eleve"
+                      name="prenom"
                       required
                     />
                     <div class="invalid-feedback">
@@ -472,8 +725,8 @@
                       required
                     >
                       <option value="">Choose...</option>
-                      <option value="M">Homme</option>
-                      <option value="F">Femme</option>
+                      <option value="male">Homme</option>
+                      <option value="female">Femme</option>
                     </select>
                     <div class="invalid-feedback">
                       Choisissez un sexe.
@@ -494,9 +747,8 @@
                         id="username"
                         placeholder="Login"
                         name="login"
-                        disabled
                         required
-                        
+                        disabled
                       />
                     </div>
                   </div>
@@ -515,7 +767,6 @@
                         name="password"
                         required
                         disabled
-                        
                       />
                     </div>
                   </div>
@@ -562,7 +813,7 @@
                       class="form-control"
                       id="email"
                       placeholder="tenetekeu@example.com"
-                      name="email_eleve"
+                      name="email"
                       required
                     />
                     <div class="invalid-feedback">
@@ -608,35 +859,18 @@
                   <label for="classe">Classe</label>
                   <select
                     class="custom-select d-block w-100"
-                    id="id_classe"
-                    name="libelle_classe"
+                    id="classe"
+                    name="classe"
                     required
                   >
                     <option value="">Choose...</option>
-                    <option value="6M">6M</option>
-                    <option value="5M">5M</option>
-                    <option value="4A">4A</option>
-                    <option value="4E">4E</option>
+                    <option value="sixieme">6e</option>
+                    <option value="cinquime">5e</option>
+                    <option value="quatrieme_all">4e all</option>
+                    <option value="quatrieme_esp">4e esp</option>
                   </select>
                   <div class="invalid-feedback">
                     Definir la classe de l'eleve.
-                  </div>
-                  
-                  <label for="classe">Salle</label>
-                  <select
-                    class="custom-select d-block w-100"
-                    id="id_classe"
-                    name="numero_salle"
-                    required
-                  >
-                    <option value="">Choose...</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                  </select>
-                  <div class="invalid-feedback">
-                    Definir la Salle de l'eleve.
                   </div>
                 </div>
               </div>
@@ -690,8 +924,8 @@
                         class="custom-select d-block w-100"
                       >
                         <option value="">sexe...</option>
-                        <option value="M">Homme</option>
-                        <option value="F">Femme</option>
+                        <option value="male">Homme</option>
+                        <option value="female">Femme</option>
                       </select>
                     </div>
                   </li>
@@ -732,22 +966,26 @@
             <!--Button Start MODAL-->
             <div class="row" style="width: 100%;">
               <hr class="mb-4" />
-              <button id="startModal" type="submit" href="#" class="btn btn-primary btn-lg btn-block">
+              <button
+                id="startModal"
+                type="submit"
+                href="#"
+                class="btn btn-primary btn-lg btn-block"
+              >
                 Enregistrer comme nouveau eleve
               </button>
             </div>
-
           </form>
         </div>
 
         <script>
           window.jQuery ||
             document.write(
-              '<script src="assets/jquery-3.5.1.slim.min.js"><\/script>'
+              '<script src="../assets/jquery-3.5.1.slim.min.js"><\/script>'
             );
         </script>
-        <script src="assets/dist/js/bootstrap.bundle.js" defer></script>
-        <script src="scripts/offcanvas.js" defer></script>
+        <script src="../assets/dist/js/bootstrap.bundle.js"></script>
+        <script src="../scripts/offcanvas.js"></script>
       </main>
       <!-- page-content" -->
     </div>
@@ -764,10 +1002,10 @@
       crossorigin="anonymous"
     ></script>
     -->
-    <script src="assets/jquery-3.5.1.slim.min.js"></script>
+    <script src="../assets/jquery-3.5.1.slim.min.js"></script>
 
-    <script src="assets/dist/js/bootstrap.min.js"></script>
-    <script src="assets/jquery-3.5.1.min.js"></script>
+    <script src="../assets/dist/js/bootstrap.min.js"></script>
+    <script src="../assets/jquery-3.5.1.min.js"></script>
 
     <!--PROPRE A LA PAGE-->
     <script
@@ -778,10 +1016,10 @@
     <script>
       window.jQuery ||
         document.write(
-          '<script src="/assets/js/vendor/jquery.slim.min.js"><\/script>'
+          '<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>'
         );
     </script>
-    <script src="assets/dist/js/bootstrap.bundle.js" defer></script>
-    <script src="scripts/enregistrement_personnel.js" defer></script>
+    <script src="../assets/dist/js/bootstrap.bundle.js"></script>
+    <script src="../scripts/enregistrement_personnel.js"></script>
   </body>
 </html>

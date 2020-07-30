@@ -1,6 +1,12 @@
+<@% page   language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<@% taglib uri="http://java.sun.com/jsp/jstl/core" 					   prefix="ng" %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>Nouvelles Notes</title>
+    <link rel="stylesheet" href="../css/enregistrement_note.css" />
+
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,7 +14,7 @@
       name="description"
       content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3"
     />
-    <title>Sidebar template</title>
+    <title>Nouvelle</title>
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -22,17 +28,17 @@
     />
 
     <link
-      href="assets/dist/css/bootstrap.css"
+      href="../assets/dist/css/bootstrap.css"
       rel="stylesheet"
       id="bootstrap-css"
     />
     <link
-      href="assets/dist/css/bootstrap.min.css"
+      href="../assets/dist/css/bootstrap.min.css"
       rel="stylesheet"
       id="bootstrap-css"
     />
     <link
-      href="assets/dist/css/bootstrap-reboot.css"
+      href="../assets/dist/css/bootstrap-reboot.css"
       rel="stylesheet"
       id="bootstrap-css"
     />
@@ -40,7 +46,7 @@
       href="https://use.fontawesome.com/releases/v5.0.6/css/all.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/sideMenu.css" />
+    <link rel="stylesheet" href="../css/sideMenu.css" />
     <style>
       #show-sidebar {
         top: 4em;
@@ -60,7 +66,7 @@
       rel="canonical"
       href="https://getbootstrap.com/docs/4.5/examples/offcanvas/"
     />
-    <link href="assets/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="./assets/dist/css/bootstrap.css" rel="stylesheet" />
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -77,11 +83,23 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="css/offcanvas.css" rel="stylesheet" />
+    <link href="../css/offcanvas.css" rel="stylesheet" />
     <!-----------------------------------PROPRE A LA PAGE------------------------------------------------------->
     <style>
       .mb-3 > label {
         font-weight: bold;
+      }
+      .entete .col-md-1.order-md-1 > p {
+        margin: 0px;
+        padding: 0px;
+        font-weight: bold;
+      }
+      .entete .col-md-4.order-md-1 {
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        size: 2rem;
       }
     </style>
     <meta
@@ -94,16 +112,15 @@
       content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
     />
     <meta name="generator" content="Jekyll v4.0.1" />
-    <title>Checkout example · Bootstrap</title>
 
-    <link href="css/floating-labels-tuteur.css" rel="stylesheet" />
+    <link href="../css/floating-labels-tuteur.css" rel="stylesheet" />
     <link
       rel="canonical"
       href="https://getbootstrap.com/docs/4.5/examples/checkout/"
     />
 
     <!-- Bootstrap core CSS -->
-    <link href="assets/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="../assets/dist/css/bootstrap.css" rel="stylesheet" />
 
     <style>
       .bd-placeholder-img {
@@ -122,21 +139,17 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="css/enregistrement_personnel.css" rel="stylesheet" />
-    <link href="css/enregistrement_eleve.css" rel="stylesheet" />
+    <link href="../css/enregistrement_personnel.css" rel="stylesheet" />
+    <link href="../css/enregistrement_eleve.css" rel="stylesheet" />
 
     <!--<script src="../scripts/enregistrer_eleve.js" defer></script>-->
-    <script src="scripts/sideMenu.js" defer></script>
+    <script src="../scripts/sideMenu.js" defer></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
   </head>
 
   <body>
-    <div id="backdrop"></div>
-
-    
-
     <div class="page-wrapper chiller-theme toggled">
       <!-- ****************************************** SIDE MENU ************************************************ -->
       <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
@@ -410,7 +423,7 @@
         <div class="py-5 text-center">
           <img
             class="d-block mx-auto mb-4"
-            src="assets/brand/bootstrap-solid.svg"
+            src="../assets/brand/bootstrap-solid.svg"
             alt=""
             width="72"
             height="72"
@@ -419,335 +432,125 @@
         </div>
 
         <div class="row">
-          <form method="POST" class="needs-validation" novalidate style="width: 100%;" action="enregistrement_eleve">
-            <!--TITRE-->
-            <div class="row">
-              <div class="col-md-8 order-md-1">
-                <h3 class="mb-3">Informations sur l'eleve</h3>
+          <form
+            method="POST"
+            class="needs-validation"
+            novalidate
+            style="width: 100%;"
+          >
+            <!--Sequence-->
+            <div class="row sequence">
+              <div class="col-md-12 order-md-1">
+                <div class="row">
+                  <h3 class="col-md-9 mb-3" for="date_fiche">
+                    Sequence:
+                  </h3>
+                  <div class="col-md-3 mb-3">
+                    <div class="input-group">
+                      <select
+                        id="sequence"
+                        name="sequence"
+                        class="custom-select d-block w-100"
+                      >
+                        <option value="">sequence...</option>
+                        <option value="1">first</option>
+                        <option value="2">second</option>
+                        <option value="3">Third</option>
+                        <option value="4">Fourth</option>
+                        <option value="5">Fifth</option>
+                        <option value="6">Sixth</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </div>
+            <!--Salle-->
+            <div class="row salle">
+              <div class="col-md-12 order-md-1">
+                <div class="row">
+                  <h3 class="col-md-9 mb-3" for="date_fiche">
+                    Salle:
+                  </h3>
+                  <div class="col-md-3 mb-3">
+                    <div class="form-label-group">
+                      <select
+                        id="salle"
+                        name="salle"
+                        class="custom-select d-block w-100"
+                      >
+                        <option value="">salle...</option>
+                        <option value="6eM1">6eM1</option>
+                        <option value="6eM2">6eM2</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+
+            <!--Corp-->
+            <div class="row entete">
+              <div class="col-md-4 order-md-1">NOMS ET PRENOMS</div>
+              <div class="col-md-4 order-md-1">NOTES</div>
+              <div class="col-md-4 order-md-1">APPRECIATIONS</div>
             </div>
 
-            <div class="row" style="width: 100%;">
-              <!--INFO ELEVE-->
-              <div class="col-md-8 order-md-1">
-                <div class="row">
-                  <div class="col-md-5 mb-3">
-                    <label for="firstName">Nom</label>
+            <div class="row list">
+              <div class="col-md-12">
+                <div class="row item">
+                  <div class="col-md-4 order-md-1">TENE TEKEU ANGE LEONEL</div>
+                  <div class="col-md-4 order-md-1">
                     <input
                       type="text"
                       class="form-control"
-                      id="firstName"
-                      placeholder="Nom_eleve"
+                      id="note"
+                      placeholder="Note"
                       value=""
-                      name="nom_eleve"
+                      name="note"
                       required
                     />
-                    <div class="invalid-feedback">
-                      Un nom valide est requis.
-                    </div>
                   </div>
 
-                  <div class="col-md-5 mb-3">
-                    <label for="lastName">Prenom</label>
+                  <div class="col-md-4 order-md-1">
                     <input
                       type="text"
                       class="form-control"
-                      id="lastName"
-                      placeholder="Prenom_eleve"
+                      id="appreciation"
+                      placeholder="Appreciation"
                       value=""
-                      name="prenom_eleve"
+                      name="appreciation"
                       required
                     />
-                    <div class="invalid-feedback">
-                      Un prenom valide est requis.
-                    </div>
-                  </div>
-
-                  <div class="col-md-2 mb-3">
-                    <label for="sexe">Sexe</label>
-                    <select
-                      class="custom-select d-block w-100"
-                      id="sexe"
-                      name="sexe"
-                      required
-                    >
-                      <option value="">Choose...</option>
-                      <option value="M">Homme</option>
-                      <option value="F">Femme</option>
-                    </select>
-                    <div class="invalid-feedback">
-                      Choisissez un sexe.
-                    </div>
                   </div>
                 </div>
-
-                <div class="row">
-                  <div class="col-md-6 mb-3">
-                    <label for="username">Login</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">@</span>
-                      </div>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="username"
-                        placeholder="Login"
-                        name="login"
-                        disabled
-                        required
-                        
-                      />
-                    </div>
-                  </div>
-
-                  <div class="col-md-6 mb-3">
-                    <label for="password">Password</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">@</span>
-                      </div>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="password"
-                        placeholder="Mot de passe"
-                        name="password"
-                        required
-                        disabled
-                        
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-5 mb-3">
-                    <label for="date_naissance">Date de naissance</label>
-                    <div class="input-group">
-                      <input
-                        type="date"
-                        class="form-control"
-                        id="date_naissance"
-                        name="date_naissance"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div class="col-md-7 mb-3">
-                    <label for="lieu_naissance">Lieu de naissance</label>
-                    <div class="input-group">
-                      <select
-                        class="custom-select d-block w-100"
-                        id="lieu_naissance"
-                        name="lieu_naissance"
-                        required
-                      >
-                        <option value="">Choose...</option>
-                        <option value="douala">Douala</option>
-                        <option value="yaounde">Yaounde</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-6 mb-3">
-                    <label for="email"
-                      >Email <span class="text-muted"></span
-                    ></label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="email"
-                      placeholder="tenetekeu@example.com"
-                      name="email_eleve"
-                      required
-                    />
-                    <div class="invalid-feedback">
-                      Veillez saisir une adresse-mail correcte.
-                    </div>
-                  </div>
-
-                  <div class="col-md-6 mb-3">
-                    <label for="telephone"
-                      >Telephone <span class="text-muted"></span
-                    ></label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="telephone"
-                      placeholder="Exemple: +237 691 331 455"
-                      name="telephone"
-                      required
-                    />
-                    <div class="invalid-feedback">
-                      Veillez saisir un numero de telephone correcte.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="mb-3">
-                  <label for="photo"
-                    >Photo (optionnel)<span class="text-muted"></span
-                  ></label>
-                  <input
-                    type="file"
-                    class="form-control"
-                    id="photo"
-                    placeholder="photo"
-                    name="photo"
-                  />
-                  <div class="invalid-feedback">
-                    Veillez saisir un matricule correcte.
-                  </div>
-                </div>
-
-                <div class="mb-3">
-                  <label for="classe">Classe</label>
-                  <select
-                    class="custom-select d-block w-100"
-                    id="id_classe"
-                    name="libelle_classe"
-                    required
-                  >
-                    <option value="">Choose...</option>
-                    <option value="6M">6M</option>
-                    <option value="5M">5M</option>
-                    <option value="4A">4A</option>
-                    <option value="4E">4E</option>
-                  </select>
-                  <div class="invalid-feedback">
-                    Definir la classe de l'eleve.
-                  </div>
-                  
-                  <label for="classe">Salle</label>
-                  <select
-                    class="custom-select d-block w-100"
-                    id="id_classe"
-                    name="numero_salle"
-                    required
-                  >
-                    <option value="">Choose...</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                  </select>
-                  <div class="invalid-feedback">
-                    Definir la Salle de l'eleve.
-                  </div>
-                </div>
-              </div>
-
-              <!--INFO Tuteur-->
-              <div class="col-md-4 order-md-2 mb-4">
-                <h4
-                  class="d-flex justify-content-between align-items-center mb-3"
-                >
-                  <span class="text-muted">Son tuteur (optionnel)</span>
-                </h4>
-
-                <ul class="list-group mb-3">
-                  <li
-                    class="list-group-item d-flex justify-content-between lh-condensed"
-                  >
-                    <div class="form-label-group">
-                      <input
-                        type="text"
-                        id="nom_tuteur"
-                        name="nom_tuteur"
-                        class="form-control"
-                        placeholder="Nom"
-                      />
-                      <label for="nom_tuteur">Nom</label>
-                    </div>
-                  </li>
-
-                  <li
-                    class="list-group-item d-flex justify-content-between lh-condensed"
-                  >
-                    <div class="form-label-group">
-                      <input
-                        type="text"
-                        id="prenom_tuteur"
-                        name="prenom_tuteur"
-                        class="form-control"
-                        placeholder="Prenom"
-                      />
-                      <label for="prenom_tuteur">Prenom</label>
-                    </div>
-                  </li>
-
-                  <li
-                    class="list-group-item d-flex justify-content-between lh-condensed"
-                  >
-                    <div class="form-label-group">
-                      <select
-                        id="sexe_tuteur"
-                        name="sexe_tuteur"
-                        class="custom-select d-block w-100"
-                      >
-                        <option value="">sexe...</option>
-                        <option value="M">Homme</option>
-                        <option value="F">Femme</option>
-                      </select>
-                    </div>
-                  </li>
-
-                  <li
-                    class="list-group-item d-flex justify-content-between lh-condensed"
-                  >
-                    <div class="form-label-group">
-                      <input
-                        type="email"
-                        id="email_tuteur"
-                        name="email_tuteur"
-                        class="form-control"
-                        placeholder="Email address"
-                      />
-                      <label for="email_tuteur">Email address</label>
-                    </div>
-                  </li>
-
-                  <li
-                    class="list-group-item d-flex justify-content-between lh-condensed"
-                  >
-                    <div class="form-label-group">
-                      <input
-                        type="text"
-                        id="telephone_tuteur"
-                        name="telephone_tuteur"
-                        class="form-control"
-                        placeholder="Telephone"
-                      />
-                      <label for="telephone_tuteur">Telephone</label>
-                    </div>
-                  </li>
-                </ul>
               </div>
             </div>
 
             <!--Button Start MODAL-->
-            <div class="row" style="width: 100%;">
+            <div class="row" style="width: 100%; margin-top: 3rem;">
               <hr class="mb-4" />
-              <button id="startModal" type="submit" href="#" class="btn btn-primary btn-lg btn-block">
-                Enregistrer comme nouveau eleve
+              <button
+                id="startModal"
+                type="submit"
+                href="#"
+                class="btn btn-primary btn-lg btn-block"
+              >
+                Enregistrer nouveau note
               </button>
             </div>
-
           </form>
         </div>
 
         <script>
           window.jQuery ||
             document.write(
-              '<script src="assets/jquery-3.5.1.slim.min.js"><\/script>'
+              '<script src="../assets/jquery-3.5.1.slim.min.js"><\/script>'
             );
         </script>
-        <script src="assets/dist/js/bootstrap.bundle.js" defer></script>
-        <script src="scripts/offcanvas.js" defer></script>
+        <script src="../assets/dist/js/bootstrap.bundle.js"></script>
+        <script src="../scripts/offcanvas.js"></script>
       </main>
       <!-- page-content" -->
     </div>
@@ -764,10 +567,10 @@
       crossorigin="anonymous"
     ></script>
     -->
-    <script src="assets/jquery-3.5.1.slim.min.js"></script>
+    <script src="../assets/jquery-3.5.1.slim.min.js"></script>
 
-    <script src="assets/dist/js/bootstrap.min.js"></script>
-    <script src="assets/jquery-3.5.1.min.js"></script>
+    <script src="../assets/dist/js/bootstrap.min.js"></script>
+    <script src="../assets/jquery-3.5.1.min.js"></script>
 
     <!--PROPRE A LA PAGE-->
     <script
@@ -778,10 +581,10 @@
     <script>
       window.jQuery ||
         document.write(
-          '<script src="/assets/js/vendor/jquery.slim.min.js"><\/script>'
+          '<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>'
         );
     </script>
-    <script src="assets/dist/js/bootstrap.bundle.js" defer></script>
-    <script src="scripts/enregistrement_personnel.js" defer></script>
+    <script src="../assets/dist/js/bootstrap.bundle.js"></script>
+    <script src="../scripts/enregistrement_personnel.js"></script>
   </body>
 </html>

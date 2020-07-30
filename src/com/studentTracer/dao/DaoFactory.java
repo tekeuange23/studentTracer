@@ -16,6 +16,13 @@ public class DaoFactory {
     private String username;
     private String password;
 
+    private DaoConnParams connParams = new DaoConnParams();
+    DaoFactory() {
+        this.url = connParams.url + "?" + connParams.timeZone;
+        this.username = connParams.username;
+        this.password = connParams.password;
+    }
+    
     DaoFactory(String url, String username, String password) {
         this.url = url;
         this.username = username;
@@ -29,8 +36,10 @@ public class DaoFactory {
 
         }
 
-        DaoFactory instance = new DaoFactory(
-                "jdbc:mysql://localhost:3306/studentTracer?serverTimezone=UTC", "marc", "marc");
+//        DaoFactory instance = new DaoFactory(
+//                "jdbc:mysql://localhost:3306/studentTracer?serverTimezone=UTC", "marc", "marc");
+//        return instance;
+        DaoFactory instance = new DaoFactory();	
         return instance;
     }
 
