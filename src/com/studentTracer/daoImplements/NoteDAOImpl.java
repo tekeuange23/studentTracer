@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 
 import com.studentTracer.beans.Note;
@@ -20,9 +21,12 @@ public class NoteDAOImpl implements NoteDAO{
 
 	@Override
 	public void EnregistrerNote(Note note) {
+		if(note == null) {
+			return;
+		}
 		Connection connexion = null;
         PreparedStatement preparedStatement = null;
-
+        
         try {
             connexion = daoFactory.getConnection();
             preparedStatement = connexion.prepareStatement(" INSERT INTO Note"
@@ -36,6 +40,11 @@ public class NoteDAOImpl implements NoteDAO{
 
             preparedStatement.executeUpdate();
             
+            //Note.setNotesValidityToYes(); //l'ajout a bien marcher alors les notes ont etes enregistres avec success
+            
+        } catch (SQLIntegrityConstraintViolationException e) {
+            e.printStackTrace();
+            Note.setNotesExistancyToYes();   //contraintes d'unicites de la note  non respectes: alors les notes existe deja
         } catch (SQLException e) {
             e.printStackTrace();
         }

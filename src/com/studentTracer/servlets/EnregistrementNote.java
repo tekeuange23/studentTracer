@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
@@ -45,7 +47,6 @@ public class EnregistrementNote extends HttpServlet {
 	
 	private Long selectedSalleId;
 	private Long selectedSequenceId;
-	private boolean notesvalides;
 	
     public EnregistrementNote() {
         super();
@@ -57,8 +58,8 @@ public class EnregistrementNote extends HttpServlet {
 		this.salleDAO = daoFactory.getSalleDAO();
 		this.sequenceDAO = daoFactory.getSequenceDAO();
 		this.noteDAO = daoFactory.getNoteDAO();
-		this.notesvalides = true;
 	}
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1-recherche le prof par son ID
 		this.connectedEnseignant = new Enseignant();
@@ -97,6 +98,8 @@ public class EnregistrementNote extends HttpServlet {
 		request.setAttribute("salleIsSet", (this.selectedSalleId + 1) != 0);
 		request.setAttribute("selectedSequenceId", this.selectedSequenceId);
 		request.setAttribute("sequenceIsSet", (this.selectedSequenceId + 1) != 0);
+		request.setAttribute("notesAreValid", Note.getNotesValidity());
+		request.setAttribute("notesAlreadyExist", Note.getNotesExistancy());
 		request.setAttribute("salles", this.sallesDuProf);
 		request.setAttribute("eleves", this.elevesSalle);
 		request.setAttribute("sequences", this.sequencesList);
@@ -104,33 +107,43 @@ public class EnregistrementNote extends HttpServlet {
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println( "SalleID: " + this.selectedSalleId);
-		System.out.println( "Seq__ID: " + this.selectedSequenceId);
-		System.out.println( "Prof_ID: " + this.connectedEnseignant.getId());	
+//		System.out.println( "SalleID: " + this.selectedSalleId);
+//		System.out.println( "Seq__ID: " + this.selectedSequenceId);
+//		System.out.println( "Prof_ID: " + this.connectedEnseignant.getId());	
 		
 		this.enteredNotes = new ArrayList<Note>();
+		Note.setNotesValidityToNone();  //on initialise le boolean a chaque do post et a la construction de la servlet
+		Note.setNotesExistancyToNone();
+		
 		//6.1: recuperation dans une liste
- 		for (Map.Entry<Long, Eleve> eleve : this.elevesSalle.entrySet()) { 	//pour chaque etudiants, on prends ca Note
-			Note note = Note.initNote(request, eleve.getValue(), this.connectedEnseignant, this.sequencesList.get(selectedSequenceId));
-			//this.noteDAO.EnregistrerNote(note);  //ajout dans la base de donnee
-			System.out.println( "\n---------------------------------------------"
-							  + "\nNOTE : 		  \t\t\t" + note.getId_note()
-							  + "\nAPPRECIATION : \t\t\t" + note.getAppreciation()
-							  + "\nEleve :		  \t\t\t" + note.getEleve().getId_eleve()
-							  + "\nProf : 		  \t\t\t" + note.getEnseignant().getId()
-							  + "\nSequence : 	  \t\t\t" + note.getSequence().getId()
-							  + "\n---------------------------------------------\n");
+        Iterator<Map.Entry<Long, Eleve> > iterator = this.elevesSalle.entrySet().iterator(); 
+        while (iterator.hasNext()) { 							//pour chaque etudiants, on prends ca Note dans le formulaire
+        	Entry<Long, Eleve> eleve = iterator.next(); 
+        	
+        	Note note = Note.initNote(request, eleve.getValue(), this.connectedEnseignant, this.sequencesList.get(selectedSequenceId));
+			if(Note.getNotesValidity().equals("NO")) {
+				break;									//on arrete la verification car un input est deja bad
+			}
+			if(!iterator.hasNext()) {	
+				Note.setNotesValidityToYes();			//on a parcouru le tt le tableau ALORS les notes sont valides
+			}			
 			
 			this.enteredNotes.add(note);
         } 
+        //6.4: Enregistrement des notes dans la bd
+ 		if(Note.getNotesValidity().equals("YES")) {
+			System.out.println("!!!!!!!!! SAVED !!!!!!!!");
+			for(Note note: this.enteredNotes) {
+				this.noteDAO.EnregistrerNote(note);  			//ajout dans la base de donnee
+				if(Note.getNotesExistancy().equals("YES")) {	//si la premiere note existe deja j'arrete l'ajout
+					break;
+				}
+			}
+ 		}
+		
 
-		//6.4: Enregistrement des notes
- 		if(this.notesvalides)
-		for(Note note: this.enteredNotes) {
-			
-		}
-		
-		
+		System.out.println("NOTE.Exist : " + Note.getNotesExistancy());
+		System.out.println("NOTE.Valid : " + Note.getNotesValidity());
 		this.doGet(request, response);
 	}
 	

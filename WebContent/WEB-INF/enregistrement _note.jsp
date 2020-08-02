@@ -1,5 +1,8 @@
 <%@ page   language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" 					   prefix="ng" %>
+<jsp:useBean id="instanceNote" 
+			 scope="page"  
+			 class="com.studentTracer.beans.Note"/>
 
 <ng:set var="salle_est_definie" value="${ salleIsSet }"></ng:set>
 <ng:set var="id_salle" value="${ selectedSalleId }"></ng:set>
@@ -156,7 +159,7 @@
 
   <body>
     <div class="page-wrapper chiller-theme toggled">
-      <!-- ****************************************** SIDE MENU ************************************************ -->
+      <!-- ****************************************** SIDE MENU *********************************************** -->
       <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
         <i class="fas fa-bars"></i>
       </a>
@@ -511,7 +514,7 @@
 			
 		  <!--Formulaire2-->
           <form	method="POST"
-            action="EnregistrementNote"
+            action="EnregistrementNote?sequence=${ selectedSequenceId }&salle=${ selectedSalleId }"
             id="needs-validation"
             class="needs-validation w-100"
             novalidate
@@ -540,7 +543,7 @@
 			                  		${ eleve.value.nom_eleve }  ${ eleve.value.prenom_eleve }</div>
 			                  <div class="col-md-4 order-md-1" id="champ-note">
 			                    <input
-			                      type="number"
+			                      type="text"
 			                      min="0"
 			                      max="20"
 			                      class="form-control"
@@ -570,14 +573,36 @@
 		              <hr class="mb-4" />
 		              <button
 		                id="startModal"
-		                type="submit"
+		                type="button"
 		                class="btn btn-primary btn-lg btn-block"
+		                data-toggle="modal" 
+		                data-target="#myModal"
 		              >
 		                  Enregistrer les notes
-						  <ng:out value="de la ${sequences[id_salle].libelle}"/>
-				          <ng:out value="en ${salles[id_salle].classe.libelle}-${salles[id_salle].libelle}"/>
 		              </button>
 		            </div>
+      				<!-- ******************************************  MODAL 1 ******************************************* -->
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					  <div class="modal-dialog modal-dialog-centered" role="document">
+					    <div class="modal-content" style="background: #31353D;">
+					      <div class="modal-header">
+					        <h5 class="modal-title text-white" id="exampleModalLongTitle">Confirmation</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body font-weight-bold text-center text-white">
+							Vous etes sur le point d'enregistrer les notes
+							<ng:out value="de la ${sequences[id_salle].libelle}"/>
+				          	<ng:out value="en ${salles[id_salle].classe.libelle}-${salles[id_salle].libelle}"/>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+					        <button type="submit" id="submitBtn" class="btn btn-primary">Confirmer</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
 				  </ng:when>
 				</ng:choose>
              </div>
@@ -593,7 +618,88 @@
         <script src="assets/dist/js/bootstrap.bundle.js"></script>
         <script src="scripts/offcanvas.js"></script>
       </main>
-      <!-- page-content" -->
+    
+      <!-- ****************************************** ERROR MODAL 1 ******************************************* -->
+	  <div class="modal fade" 
+	  	   id="errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		      	<ng:if test="${ notesAreValid == 'YES' }">
+		        	<h5 class="modal-title" id="exampleModalLabel text-success">NOTES ENREGISTREES</h5>
+				</ng:if>
+				<ng:if test="${ notesAreValid == 'NO' }">
+		        	<h5 class="modal-title" id="exampleModalLabel text-warning">NOTES NON ENREGISTREES</h5>
+				</ng:if>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body text-info">
+				  <ng:if test="${ notesAreValid == 'YES' }">
+				  	<div class="font-weight-bold text-center text-success">
+				  		Les notes ont ete enregistrees avec succes.
+				  	</div>
+				  </ng:if>
+				  <ng:if test="${ notesAreValid == 'NO' }">
+				  	<div class="font-weight-bold text-center text-danger">
+				  		Verifier que les notes sont bien des entiers compris entre 0 et 20.
+				  	</div>
+				  </ng:if>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Compris</button>
+		      </div>
+		    </div>
+		  </div>
+	  </div>
+       <ng:if test="${ (notesAlreadyExist != 'YES') && (notesAreValid == 'YES' || notesAreValid == 'NO') }">
+	  	<script>
+	  		$('#errorModal').modal('show'); 
+	  	</script>
+	  	<!--  EXECUTER UN CODE JAVA POUR SET A 'NONE' apres l'execution du javascript -->
+	  	<%	
+	  		instanceNote.setNotesValidityToNone();	
+	  		instanceNote.setNotesExistancyToNone();
+	  	%>
+	  </ng:if>
+      <!-- ****************************************** EXISTANCE MODAL 1 *************************************** -->
+	  <div class="modal fade" 
+	  	   id="existanceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content">
+		      <div class="modal-header">
+				<ng:if test="${ notesAlreadyExist == 'YES' }">
+		        	<h5 class="modal-title" id="exampleModalLabel text-primary">NOTES NON ENREGISTREES</h5>
+				</ng:if>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body text-info">
+				  <ng:if test="${ notesAlreadyExist == 'YES' }">
+				  	<div class="font-weight-bold text-center text-warning">
+				  		Cette operation a deja ete effectuee.
+				  	</div>
+				  </ng:if>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Compris</button>
+		      </div>
+		    </div>
+		  </div>
+	  </div>
+	  <ng:if test="${ notesAlreadyExist == 'YES' }">
+	  	<script>
+	  		$('#existanceModal').modal('show'); 
+	  	</script>
+	  	<!--  EXECUTER UN CODE JAVA POUR SET A 'NONE' apres l'execution du javascript -->
+	  	<%	
+	  		instanceNote.setNotesValidityToNone();	
+  			instanceNote.setNotesExistancyToNone();
+	  	%>
+	  </ng:if>
+	  
     </div>
     <!-- page-wrapper -->
     <!--

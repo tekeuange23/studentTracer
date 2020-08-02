@@ -1,6 +1,7 @@
 package com.studentTracer.beans;
 
 import java.sql.Date;
+import java.util.concurrent.atomic.AtomicReference;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,13 +15,32 @@ public class Note {
 	private Eleve eleve;
 	private Sequence sequence;
 	
-	public static Note initNote(HttpServletRequest request, Eleve eleve, Enseignant enseignant, Sequence sequence) {
+	//HANDLING ERRORS VARIABLES
+	private static String notesAreValid = "NONE"; //NONE - NO - YES 
+	private static String notesAlreadyExist = "NONE"; //NONE - NO - YES 
+	
+	public static Note initNote(
+			HttpServletRequest request, 
+			Eleve eleve, 
+			Enseignant enseignant, 
+			Sequence sequence
+	) {
 		 Note note = new Note();
+		 Long noteValue = null;
+		 String appreciationValue = null;
+		 try {	
+			 noteValue = (long) Integer.parseInt(request.getParameter("note-" + eleve.getId_eleve())); 
+			 if(noteValue < 0 || noteValue > 20) {
+				 Note.setNotesValidityToNo();
+			 }
+		 } 
+		 catch (NumberFormatException e) {
+			 e.printStackTrace();
+			 Note.setNotesValidityToNo();
+		 }
+		 appreciationValue = request.getParameter("appreciation-" + eleve.getId_eleve());
 		 
-		 Long noteValue = Long.parseLong(request.getParameter("note-" + eleve.getId_eleve()));
-		 String appreciationValue = request.getParameter("appreciation-" + eleve.getId_eleve());
-		 
-		 note.setId_note(noteValue);
+		 note.setNote(noteValue);
 		 note.setAppreciation(appreciationValue);
 		 note.setEleve(eleve);
 		 note.setEnseignant(enseignant);
@@ -83,6 +103,35 @@ public class Note {
 
 	public void setSequence(Sequence sequence) {
 		this.sequence = sequence;
+	}
+
+	
+
+	//HANDLING ERRORS VARIABLES
+	public static String getNotesValidity() {
+		return notesAreValid;
+	}
+	public static void setNotesValidityToNone() {
+		Note.notesAreValid = "NONE";
+	}
+	public static void setNotesValidityToNo() {
+		Note.notesAreValid = "NO";
+	}
+	public static void setNotesValidityToYes() {
+		Note.notesAreValid = "YES";
+	}
+
+	public static String getNotesExistancy() {
+		return notesAlreadyExist;
+	}
+	public static void setNotesExistancyToNone() {
+		Note.notesAlreadyExist = "NONE";
+	}
+	public static void setNotesExistancyToNo() {
+		Note.notesAlreadyExist = "NO";
+	}
+	public static void setNotesExistancyToYes() {
+		Note.notesAlreadyExist = "YES";
 	}
 	
 	
