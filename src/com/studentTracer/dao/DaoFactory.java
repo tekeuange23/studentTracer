@@ -9,6 +9,9 @@ import com.studentTracer.daoImplements.AbscenseDAOImpl;
 import com.studentTracer.daoImplements.ClasseDAOImpl;
 import com.studentTracer.daoImplements.CreneauDAOImpl;
 import com.studentTracer.daoImplements.EleveDAOImpl;
+import com.studentTracer.daoImplements.NoteDAOImpl;
+import com.studentTracer.daoImplements.SalleDAOImpl;
+import com.studentTracer.daoImplements.SequenceDAOImpl;
 import com.studentTracer.daoImplements.TuteurDAOImpl;
 
 public class DaoFactory {
@@ -17,7 +20,7 @@ public class DaoFactory {
     private String password;
 
     private DaoConnParams connParams = new DaoConnParams();
-    DaoFactory() {
+    public DaoFactory() {
         this.url = connParams.url + "?" + connParams.timeZone;
         this.username = connParams.username;
         this.password = connParams.password;
@@ -69,4 +72,14 @@ public class DaoFactory {
     public AbscenceDAO getAbscenseDAO() {
     	return new AbscenseDAOImpl(this);
     }
+    public SalleDAO getSalleDAO() {
+    	return new SalleDAOImpl(this);
+    }
+    public SequenceDAO getSequenceDAO() {
+    	return new SequenceDAOImpl(this);
+    }
+    public NoteDAO getNoteDAO() {
+    	return new NoteDAOImpl(this);
+    }
+    
 }

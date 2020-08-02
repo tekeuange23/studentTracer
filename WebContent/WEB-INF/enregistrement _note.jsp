@@ -1,11 +1,17 @@
-<@% page   language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<@% taglib uri="http://java.sun.com/jsp/jstl/core" 					   prefix="ng" %>
+<%@ page   language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" 					   prefix="ng" %>
+
+<ng:set var="salle_est_definie" value="${ salleIsSet }"></ng:set>
+<ng:set var="id_salle" value="${ selectedSalleId }"></ng:set>
+<ng:set var="sequence_est_definie" value="${ sequenceIsSet }"></ng:set>
+<ng:set var="id_sequence" value="${ selectedSequenceId }"></ng:set>
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Nouvelles Notes</title>
-    <link rel="stylesheet" href="../css/enregistrement_note.css" />
+    <link rel="stylesheet" href="css/enregistrement_note.css" />
+    <script src="scripts/enregistrement_note.js" defer></script>
 
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -14,7 +20,6 @@
       name="description"
       content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3"
     />
-    <title>Nouvelle</title>
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -28,17 +33,17 @@
     />
 
     <link
-      href="../assets/dist/css/bootstrap.css"
+      href="assets/dist/css/bootstrap.css"
       rel="stylesheet"
       id="bootstrap-css"
     />
     <link
-      href="../assets/dist/css/bootstrap.min.css"
+      href="assets/dist/css/bootstrap.min.css"
       rel="stylesheet"
       id="bootstrap-css"
     />
     <link
-      href="../assets/dist/css/bootstrap-reboot.css"
+      href="assets/dist/css/bootstrap-reboot.css"
       rel="stylesheet"
       id="bootstrap-css"
     />
@@ -46,7 +51,7 @@
       href="https://use.fontawesome.com/releases/v5.0.6/css/all.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/sideMenu.css" />
+    <link rel="stylesheet" href="css/sideMenu.css" />
     <style>
       #show-sidebar {
         top: 4em;
@@ -66,7 +71,7 @@
       rel="canonical"
       href="https://getbootstrap.com/docs/4.5/examples/offcanvas/"
     />
-    <link href="./assets/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="assets/dist/css/bootstrap.css" rel="stylesheet" />
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -83,7 +88,7 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="../css/offcanvas.css" rel="stylesheet" />
+    <link href="css/offcanvas.css" rel="stylesheet" />
     <!-----------------------------------PROPRE A LA PAGE------------------------------------------------------->
     <style>
       .mb-3 > label {
@@ -113,14 +118,14 @@
     />
     <meta name="generator" content="Jekyll v4.0.1" />
 
-    <link href="../css/floating-labels-tuteur.css" rel="stylesheet" />
+    <link href="css/floating-labels-tuteur.css" rel="stylesheet" />
     <link
       rel="canonical"
       href="https://getbootstrap.com/docs/4.5/examples/checkout/"
     />
 
     <!-- Bootstrap core CSS -->
-    <link href="../assets/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="assets/dist/css/bootstrap.css" rel="stylesheet" />
 
     <style>
       .bd-placeholder-img {
@@ -139,11 +144,11 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="../css/enregistrement_personnel.css" rel="stylesheet" />
-    <link href="../css/enregistrement_eleve.css" rel="stylesheet" />
+    <link href="css/enregistrement_personnel.css" rel="stylesheet" />
+    <link href="css/enregistrement_eleve.css" rel="stylesheet" />
 
     <!--<script src="../scripts/enregistrer_eleve.js" defer></script>-->
-    <script src="../scripts/sideMenu.js" defer></script>
+    <script src="scripts/sideMenu.js" defer></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
@@ -423,134 +428,170 @@
         <div class="py-5 text-center">
           <img
             class="d-block mx-auto mb-4"
-            src="../assets/brand/bootstrap-solid.svg"
+            src="assets/brand/bootstrap-solid.svg"
             alt=""
             width="72"
             height="72"
           />
-          <h2>Nouveau Eleve</h2>
+          
+          <h2>Enregistrer vos notes</h2>
         </div>
-
+		
+		<!-- BODY -->
         <div class="row">
-          <form
-            method="POST"
-            class="needs-validation"
+          <!--Formulaire1-->
+          <form method="GET" 
+          		action="EnregistrementNote" 
+          		class="needs-validation w-100" 
+          		style="margin-bottom: 5rem;">
+          	<div class="row border-bottom border-dark">
+	            <!--Sequence-->
+	            <div class="row w-100">
+	              <div class="col-md-12 order-md-1">
+	                <div class="row">
+	                  <h3 class="col-md-9 mb-3">
+	                    Sequence:
+	                  </h3>
+	                  <div class="col-md-3 mb-3">
+		                    <div class="input-group">
+		                    
+		                      <select
+		                      	onchange="this.form.submit()"
+		                        id="sequence"
+		                        name="sequence"
+		                        class="custom-select d-block w-100"
+		                        require
+		                      >
+								<option value="-1">sequence...</option>
+		                        <ng:forEach items="${ sequences }" var="seq">
+			                        <option class="seq-options" 
+			                        		name="${seq.key}" 
+			                        		value="${seq.key}"
+			                        		${seq.key == selectedSequenceId ? 'selected' : ''}>
+			                        		${ seq.value.libelle }</option>
+			                    </ng:forEach>
+		                      </select>
+		                    </div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	            
+	            <!--Salle-->
+	            <div class="row w-100">
+	              <div class="col-md-12 order-md-1">
+	                <div class="row">
+	                  <h3 class="col-md-9 mb-3" for="date_fiche">
+	                    Salle:
+	                  </h3>
+	                  <div class="col-md-3 mb-3">
+		                    <div class="form-label-group">
+		                      <select
+		                      	onchange="this.form.submit()"
+		                        id="salle"
+		                        name="salle"
+		                        class="custom-select d-block w-100"
+		                      >
+		                       <option value="">salle...</option>
+		                        <ng:forEach items="${ salles }" var="salle">
+		                        	<option class="salle-options" 
+		                        			name="${salle.key}" 
+		                        			value="${salle.key}"
+			                        		${salle.key == selectedSalleId ? 'selected' : ''}>
+		                        			${ salle.value.classe.libelle }-${salle.value.libelle}</option>
+		                        </ng:forEach>
+		                      </select>
+		                    </div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+          	</div>
+          </form>
+			
+		  <!--Formulaire2-->
+          <form	method="POST"
+            action="EnregistrementNote"
+            id="needs-validation"
+            class="needs-validation w-100"
             novalidate
-            style="width: 100%;"
           >
-            <!--Sequence-->
-            <div class="row sequence">
-              <div class="col-md-12 order-md-1">
-                <div class="row">
-                  <h3 class="col-md-9 mb-3" for="date_fiche">
-                    Sequence:
-                  </h3>
-                  <div class="col-md-3 mb-3">
-                    <div class="input-group">
-                      <select
-                        id="sequence"
-                        name="sequence"
-                        class="custom-select d-block w-100"
-                      >
-                        <option value="">sequence...</option>
-                        <option value="1">first</option>
-                        <option value="2">second</option>
-                        <option value="3">Third</option>
-                        <option value="4">Fourth</option>
-                        <option value="5">Fifth</option>
-                        <option value="6">Sixth</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!--Salle-->
-            <div class="row salle">
-              <div class="col-md-12 order-md-1">
-                <div class="row">
-                  <h3 class="col-md-9 mb-3" for="date_fiche">
-                    Salle:
-                  </h3>
-                  <div class="col-md-3 mb-3">
-                    <div class="form-label-group">
-                      <select
-                        id="salle"
-                        name="salle"
-                        class="custom-select d-block w-100"
-                      >
-                        <option value="">salle...</option>
-                        <option value="6eM1">6eM1</option>
-                        <option value="6eM2">6eM2</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <br />
-
-            <!--Corp-->
-            <div class="row entete">
-              <div class="col-md-4 order-md-1">NOMS ET PRENOMS</div>
-              <div class="col-md-4 order-md-1">NOTES</div>
-              <div class="col-md-4 order-md-1">APPRECIATIONS</div>
-            </div>
-
-            <div class="row list">
-              <div class="col-md-12">
-                <div class="row item">
-                  <div class="col-md-4 order-md-1">TENE TEKEU ANGE LEONEL</div>
-                  <div class="col-md-4 order-md-1">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="note"
-                      placeholder="Note"
-                      value=""
-                      name="note"
-                      required
-                    />
-                  </div>
-
-                  <div class="col-md-4 order-md-1">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="appreciation"
-                      placeholder="Appreciation"
-                      value=""
-                      name="appreciation"
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!--Button Start MODAL-->
-            <div class="row" style="width: 100%; margin-top: 3rem;">
-              <hr class="mb-4" />
-              <button
-                id="startModal"
-                type="submit"
-                href="#"
-                class="btn btn-primary btn-lg btn-block"
-              >
-                Enregistrer nouveau note
-              </button>
-            </div>
+          	<div class="row">
+	            <ng:choose>
+				  <ng:when test="${ salle_est_definie == false || sequence_est_definie == false }">
+				    <div class="row w-100 text-center">
+				    	<h1 class="w-100 text-danger bg-primary mt-3">SELECTIONNER UNE SALLE</h1>
+				    </div>
+				  </ng:when>
+				  <ng:when test="${ salle_est_definie == true  && sequence_est_definie == true  }">
+				  	<!--Entete-->
+		            <div class="row w-100 mb-2">
+		              <div class="col-md-4 order-md-1 font-weight-bold .small">NOMS ET PRENOMS</div>
+		              <div class="col-md-4 order-md-1 font-weight-bold">NOTES</div>
+		              <div class="col-md-4 order-md-1 font-weight-bold">APPRECIATIONS</div>
+		            </div>
+		            
+	            	<!--Liste des eleve-->
+				  	<div class="row w-100 .text-left">
+				  	<ng:forEach items="${ eleves }" var="eleve">
+			            <div class="col-md-12 w-100 mb-1">
+			               <div class="row w-100 justify-content-start ">
+			                  <div class="col-md-4 order-md-1 align-bottom text-uppercase">
+			                  		${ eleve.value.nom_eleve }  ${ eleve.value.prenom_eleve }</div>
+			                  <div class="col-md-4 order-md-1" id="champ-note">
+			                    <input
+			                      type="number"
+			                      min="0"
+			                      max="20"
+			                      class="form-control"
+			                      id="note"
+			                      placeholder="Note"
+			                      name="note-${eleve.key}"
+			                      required
+			                    />
+			                  </div>
+			                  <div class="col-md-4 order-md-1" id="champ-appreciation">
+			                    <input
+			                      type="text"
+			                      class="form-control"
+			                      id="appreciation"
+			                      placeholder="Appreciation"
+			                      name="appreciation-${eleve.key}"
+			                      required
+			                    />
+			                  </div>
+			                </div>
+			              </div>
+		              </ng:forEach>
+	            	</div>
+	            	
+	            	<!--Button Start MODAL-->
+		            <div class="row" style="width: 100%; margin-top: 3rem;">
+		              <hr class="mb-4" />
+		              <button
+		                id="startModal"
+		                type="submit"
+		                class="btn btn-primary btn-lg btn-block"
+		              >
+		                  Enregistrer les notes
+						  <ng:out value="de la ${sequences[id_salle].libelle}"/>
+				          <ng:out value="en ${salles[id_salle].classe.libelle}-${salles[id_salle].libelle}"/>
+		              </button>
+		            </div>
+				  </ng:when>
+				</ng:choose>
+             </div>
           </form>
         </div>
 
         <script>
           window.jQuery ||
             document.write(
-              '<script src="../assets/jquery-3.5.1.slim.min.js"><\/script>'
+              '<script src="assets/jquery-3.5.1.slim.min.js"><\/script>'
             );
         </script>
-        <script src="../assets/dist/js/bootstrap.bundle.js"></script>
-        <script src="../scripts/offcanvas.js"></script>
+        <script src="assets/dist/js/bootstrap.bundle.js"></script>
+        <script src="scripts/offcanvas.js"></script>
       </main>
       <!-- page-content" -->
     </div>
@@ -567,10 +608,10 @@
       crossorigin="anonymous"
     ></script>
     -->
-    <script src="../assets/jquery-3.5.1.slim.min.js"></script>
+    <script src="assets/jquery-3.5.1.slim.min.js"></script>
 
-    <script src="../assets/dist/js/bootstrap.min.js"></script>
-    <script src="../assets/jquery-3.5.1.min.js"></script>
+    <script src="assets/dist/js/bootstrap.min.js"></script>
+    <script src="assets/jquery-3.5.1.min.js"></script>
 
     <!--PROPRE A LA PAGE-->
     <script
@@ -581,10 +622,10 @@
     <script>
       window.jQuery ||
         document.write(
-          '<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>'
+          '<script src="assets/js/vendor/jquery.slim.min.js"><\/script>'
         );
     </script>
-    <script src="../assets/dist/js/bootstrap.bundle.js"></script>
-    <script src="../scripts/enregistrement_personnel.js"></script>
+    <script src="assets/dist/js/bootstrap.bundle.js"></script>
+    <script src="scripts/enregistrement_personnel.js"></script>
   </body>
 </html>
