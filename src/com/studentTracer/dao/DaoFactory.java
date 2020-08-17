@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import com.studentTracer.daoImplements.AbscenseDAOImpl;
 import com.studentTracer.daoImplements.ClasseDAOImpl;
+import com.studentTracer.daoImplements.CommunicationEEDAOImpl;
 import com.studentTracer.daoImplements.CreneauDAOImpl;
 import com.studentTracer.daoImplements.EleveDAOImpl;
 import com.studentTracer.daoImplements.NoteDAOImpl;
@@ -80,6 +81,9 @@ public class DaoFactory {
     }
     public NoteDAO getNoteDAO() {
     	return new NoteDAOImpl(this);
+    }
+    public CommunicationEEDAO getCommunicationEEDAO() {
+    	return new CommunicationEEDAOImpl(this);
     }
     
 }

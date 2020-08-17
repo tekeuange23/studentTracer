@@ -9,17 +9,21 @@ public class Note {
 	private Long id_note;
 	private Long note;
 	private String appreciation;
-	private Date date_enregistrement;
+	private String date_enregistrement;
 	
-	private Enseignant enseignant;
+	private Personnel enseignant;
 	private Eleve eleve;
 	private Sequence sequence;
+	
+	//NOT IN NOTE MODEL
+	private Long rank;
+	private String Mention;
 	
 	//HANDLING ERRORS VARIABLES
 	private static String notesAreValid = "NONE"; //NONE - NO - YES 
 	private static String notesAlreadyExist = "NONE"; //NONE - NO - YES 
 	
-	public static Note initNote(
+	public static Note initNote(			//AJOUT
 			HttpServletRequest request, 
 			Eleve eleve, 
 			Enseignant enseignant, 
@@ -44,6 +48,38 @@ public class Note {
 		 note.setAppreciation(appreciationValue);
 		 note.setEleve(eleve);
 		 note.setEnseignant(enseignant);
+		 note.setSequence(sequence);
+		 
+		 return note;
+	}
+	
+	public static Note initNouvelleNote(		//MODIFICATION
+			HttpServletRequest request, 
+			Note ancienneNote, 
+			Personnel connectedEnseignant, 
+			Sequence sequence
+	) {
+		 Note note = new Note();
+		 Long noteValue = null;
+		 String appreciationValue = null;
+		 try {	
+			 System.out.println("Note ID INIT: " + ancienneNote.getId_note());
+			 noteValue = (long) Integer.parseInt(request.getParameter("note-" + ancienneNote.getId_note())); 
+			 if(noteValue < 0 || noteValue > 20) {
+				 Note.setNotesValidityToNo();
+			 }
+		 } 
+		 catch (NumberFormatException e) {
+			 e.printStackTrace();
+			 Note.setNotesValidityToNo();
+		 }
+		 appreciationValue = request.getParameter("appreciation-" + ancienneNote.getId_note());
+		 
+		 note.setId_note(ancienneNote.getId_note());
+		 note.setNote(noteValue);
+		 note.setAppreciation(appreciationValue);
+		 note.setEleve(ancienneNote.getEleve());
+		 note.setEnseignant(connectedEnseignant);
 		 note.setSequence(sequence);
 		 
 		 return note;
@@ -73,19 +109,19 @@ public class Note {
 		this.appreciation = appreciation;
 	}
 
-	public Date getDate_enregistrement() {
+	public String getDate_enregistrement() {
 		return date_enregistrement;
 	}
 
-	public void setDate_enregistrement(Date date_enregistrament) {
+	public void setDate_enregistrement(String date_enregistrament) {
 		this.date_enregistrement = date_enregistrament;
 	}
 
-	public Enseignant getEnseignant() {
+	public Personnel getEnseignant() {
 		return enseignant;
 	}
 
-	public void setEnseignant(Enseignant enseignant) {
+	public void setEnseignant(Personnel enseignant) {
 		this.enseignant = enseignant;
 	}
 
@@ -104,7 +140,55 @@ public class Note {
 	public void setSequence(Sequence sequence) {
 		this.sequence = sequence;
 	}
-
+	//////////////////////////////////////NOT IN NOTE MODEL
+	public Long getRank() {
+		return rank;
+	}
+	public void setRank(Long rank) {
+		this.rank = rank;
+	}
+	public String getMention() {
+		return Mention;
+	}
+	public void setMention() {
+		if(this.note == 0) {
+			Mention = "NUL";
+			return;
+		}
+		if(this.note < 6) {
+			Mention = "M";
+			return;
+		}
+		if(this.note < 10) {
+			Mention = "I";
+			return;
+		}
+		if(this.note == 10 || this.note == 11) {
+			Mention = "P";
+			return;
+		}
+		if(this.note == 12 || this.note == 13) {
+			Mention = "AB";
+			return;
+		}
+		if(this.note == 14 || this.note == 15) {
+			Mention = "B";
+			return;
+		}
+		if(this.note == 16 || this.note == 17) {
+			Mention = "TB";
+			return;
+		}
+		if(this.note == 18 || this.note == 19) {
+			Mention = "EX";
+			return;
+		}
+		if(this.note == 20) {
+			Mention = "PF";
+			return;
+		}
+	}
+	//////////////////////////////////////////////////////
 	
 
 	//HANDLING ERRORS VARIABLES
@@ -133,7 +217,7 @@ public class Note {
 	public static void setNotesExistancyToYes() {
 		Note.notesAlreadyExist = "YES";
 	}
-	
+		
 	
 	
 }

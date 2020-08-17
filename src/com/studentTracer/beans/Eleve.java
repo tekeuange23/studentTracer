@@ -15,6 +15,7 @@ public class Eleve {
 	 private Date date_naissance;
 	 private String email;
 	 private String telephone;
+	 private String photo_url;
 
 	 private Tuteur tuteur;
 	 private Classe classe;
@@ -120,6 +121,12 @@ public class Eleve {
 	}
 	public void setNumero_salle(long numero_salle) {
 		this.numero_salle = numero_salle;
+	}
+	public String getPhoto_url() {
+		return photo_url;
+	}
+	public void setPhoto_url(String photo_url) {
+		this.photo_url = photo_url;
 	}
 	
 	 

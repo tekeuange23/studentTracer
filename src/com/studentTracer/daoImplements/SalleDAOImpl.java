@@ -10,7 +10,9 @@ import java.util.HashMap;
 
 import com.studentTracer.beans.Classe;
 import com.studentTracer.beans.Eleve;
+import com.studentTracer.beans.MatiereClasse;
 import com.studentTracer.beans.Salle;
+import com.studentTracer.beans.Specialite;
 import com.studentTracer.dao.DaoFactory;
 import com.studentTracer.dao.SalleDAO;
 
@@ -22,7 +24,7 @@ public class SalleDAOImpl implements SalleDAO{
 	}
 	
 	@Override
-	public HashMap<Long, Salle> rechercheSallesParIdEnseignant(Long idEns) {
+	public HashMap<Long, Salle> getSallesByIdEnseignant(Long idEns) {
 		Connection connexion = null;
         Statement statement = null;
         ResultSet resultat = null;
@@ -33,19 +35,19 @@ public class SalleDAOImpl implements SalleDAO{
             connexion = daoFactory.getConnection();
             statement = connexion.createStatement();
            
-            resultat = statement.executeQuery(" SELECT S.id_salle, S.libelle_salle, C.id_classe, C.libelle_classe"
-            								 +"	FROM Enseigner E"
+            resultat = statement.executeQuery(" SELECT distinct S.id_salle , C.id_classe, C.libelle_classe , S.numero_salle"
+            								 +"	FROM CreneauHoraire ch"
             								 +"	INNER JOIN Personnel P"
-            								 +"		ON E.id_personnel = P.id_personnel"
+            								 +"		ON ch.id_personnelEns = P.id_personnel"
             								 +"	INNER JOIN Salle S"
-            								 +"		ON E.id_salle = S.id_salle"
+            								 +"		ON ch.id_salle = S.id_salle"
 											 +"	INNER JOIN Classe C"
 											 +"		ON C.id_classe = S.id_classe"
-            								 +" WHERE E.id_personnel = " + idEns + ";");
+            								 +" WHERE ch.id_personnelEns = " + idEns + ";");
             salles=new HashMap<Long, Salle>();
             while (resultat.next()) {
             	Long id_salle = resultat.getLong("S.id_salle");
-                String libelle_salle = resultat.getString("S.libelle_salle");
+                String libelle_salle = resultat.getString("S.numero_salle");
                 Classe classe = new Classe();
                 	Long id_classe = resultat.getLong("C.id_classe");
                     String libelle_classe = resultat.getString("C.libelle_classe");
@@ -79,7 +81,7 @@ public class SalleDAOImpl implements SalleDAO{
 	}
 
 	@Override
-	public HashMap<Long, Eleve> rechercheElevesParIdSalle(Long idSal) {
+	public HashMap<Long, Eleve> getSalleByIdSalle(Long idSal) {
 		Connection connexion = null;
         Statement statement = null;
         ResultSet resultat = null;
@@ -126,6 +128,70 @@ public class SalleDAOImpl implements SalleDAO{
         }
         
 		return eleves;
+	}
+
+	@Override
+	public HashMap<Long, MatiereClasse> getMatieresSalleByIdEleve(Long id_eleve) {
+		System.out.println("DEBUT" + id_eleve);
+		Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+        MatiereClasse matSalle = null;
+        HashMap<Long, MatiereClasse> matieresSalles = null;
+        
+        try {
+            connexion = daoFactory.getConnection();
+            statement = connexion.createStatement();
+           
+            resultat = statement.executeQuery(" SELECT *"
+            								 +"	FROM MatiereClasse mc"
+            								 +"	INNER JOIN Specialite sp"
+            								 +"		ON mc.id_specialite = sp.id_specialite"
+            								 +"	INNER JOIN Classe cl"
+            								 +"		ON mc.id_classe = cl.id_classe"
+											 +"	INNER JOIN Salle sa"
+											 +"		ON cl.id_classe = sa.id_classe"
+											 +"	INNER JOIN Eleve el"
+											 +"		ON sa.id_salle = el.id_salle"
+            								 +" WHERE el.id_eleve = " + id_eleve + ";");
+           
+            matieresSalles = new HashMap<Long, MatiereClasse>();
+            
+            while (resultat.next()) {
+            	Long id_matSalle = resultat.getLong("mc.id_matiere_classe");
+                Classe classe = new Classe();
+                	Long id_classe = resultat.getLong("cl.id_classe");						classe.setId_class(id_classe);
+                    String libelle_classe = resultat.getString("cl.libelle_classe");		classe.setLibelle(libelle_classe);
+                Specialite sp = new Specialite();
+                	Long id_sp = resultat.getLong("sp.id_specialite");						sp.setId(id_sp);
+                	String nom_specialite = resultat.getString("sp.nom_specialite");		sp.setNom(nom_specialite);
+                
+                matSalle = new MatiereClasse();
+                matSalle.setId(id_matSalle);
+                matSalle.setClasse(classe);
+                matSalle.setSpecialite(sp);
+                
+                matieresSalles.put(id_matSalle, matSalle);
+                
+                System.out.println("Specilite I : " + sp.getNom());
+            }
+            
+        } catch (SQLException e) {
+            System.out.println("Exception venant de la base de donn�es "+ e.getMessage());
+        } catch (Exception e) { 
+         	System.out.println("Autre Exception" + e.getMessage());
+        }
+        finally {
+        	try {
+        		if (connexion != null) {
+        				connexion.close();  
+                }
+        	} catch (SQLException e) {
+        		System.out.println("Exception venant de la base de donn�es: a la fermeture "+ e.getMessage());
+            }
+        }
+        
+		return matieresSalles;
 	}
 
 }

@@ -12,9 +12,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Nouvelles Notes</title>
-    <link rel="stylesheet" href="css/enregistrement_note.css" />
-    <script src="scripts/enregistrement_note.js" defer></script>
+    <title>Edition Notes</title>
+    <link rel="stylesheet" href="../css/note_add.css" />
+    <script src="../scripts/note_add.js" defer></script>
 
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -36,17 +36,17 @@
     />
 
     <link
-      href="assets/dist/css/bootstrap.css"
+      href="../assets/dist/css/bootstrap.css"
       rel="stylesheet"
       id="bootstrap-css"
     />
     <link
-      href="assets/dist/css/bootstrap.min.css"
+      href="../assets/dist/css/bootstrap.min.css"
       rel="stylesheet"
       id="bootstrap-css"
     />
     <link
-      href="assets/dist/css/bootstrap-reboot.css"
+      href="../assets/dist/css/bootstrap-reboot.css"
       rel="stylesheet"
       id="bootstrap-css"
     />
@@ -54,7 +54,7 @@
       href="https://use.fontawesome.com/releases/v5.0.6/css/all.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/sideMenu.css" />
+    <link rel="stylesheet" href="../css/sideMenu.css" />
     <style>
       #show-sidebar {
         top: 4em;
@@ -74,7 +74,7 @@
       rel="canonical"
       href="https://getbootstrap.com/docs/4.5/examples/offcanvas/"
     />
-    <link href="assets/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="../assets/dist/css/bootstrap.css" rel="stylesheet" />
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -91,7 +91,7 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="css/offcanvas.css" rel="stylesheet" />
+    <link href="../css/offcanvas.css" rel="stylesheet" />
     <!-----------------------------------PROPRE A LA PAGE------------------------------------------------------->
     <style>
       .mb-3 > label {
@@ -121,14 +121,14 @@
     />
     <meta name="generator" content="Jekyll v4.0.1" />
 
-    <link href="css/floating-labels-tuteur.css" rel="stylesheet" />
+    <link href="../css/floating-labels-tuteur.css" rel="stylesheet" />
     <link
       rel="canonical"
       href="https://getbootstrap.com/docs/4.5/examples/checkout/"
     />
 
     <!-- Bootstrap core CSS -->
-    <link href="assets/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="../assets/dist/css/bootstrap.css" rel="stylesheet" />
 
     <style>
       .bd-placeholder-img {
@@ -147,11 +147,11 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="css/enregistrement_personnel.css" rel="stylesheet" />
-    <link href="css/enregistrement_eleve.css" rel="stylesheet" />
+    <link href="../css/enregistrement_personnel.css" rel="stylesheet" />
+    <link href="../css/enregistrement_eleve.css" rel="stylesheet" />
 
     <!--<script src="../scripts/enregistrer_eleve.js" defer></script>-->
-    <script src="scripts/sideMenu.js" defer></script>
+    <script src="../scripts/sideMenu.js" defer></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
@@ -181,10 +181,10 @@
             </div>
             <div class="user-info">
               <span class="user-name"
-                >Jhon
-                <strong>Smith</strong>
+                >Ange
+                <strong>Tekeu</strong>
               </span>
-              <span class="user-role">Administrator</span>
+              <span class="user-role">Enseignant</span>
               <span class="user-status">
                 <i class="fa fa-circle"></i>
                 <span>Online</span>
@@ -209,141 +209,7 @@
             </div>
           </div>
           <!-- sidebar-search  -->
-          <div class="sidebar-menu">
-            <ul>
-              <li class="header-menu">
-                <span>General</span>
-              </li>
-              <li class="sidebar-dropdown">
-                <a href="#">
-                  <i class="fa fa-tachometer-alt"></i>
-                  <span>Dashboard</span>
-                  <span class="badge badge-pill badge-warning">New</span>
-                </a>
-                <div class="sidebar-submenu">
-                  <ul>
-                    <li>
-                      <a href="#"
-                        >Dashboard 1
-                        <span class="badge badge-pill badge-success">Pro</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">Dashboard 2</a>
-                    </li>
-                    <li>
-                      <a href="#">Dashboard 3</a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="sidebar-dropdown">
-                <a href="#">
-                  <i class="fa fa-shopping-cart"></i>
-                  <span>E-commerce</span>
-                  <span class="badge badge-pill badge-danger">3</span>
-                </a>
-                <div class="sidebar-submenu">
-                  <ul>
-                    <li>
-                      <a href="#">Products </a>
-                    </li>
-                    <li>
-                      <a href="#">Orders</a>
-                    </li>
-                    <li>
-                      <a href="#">Credit cart</a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="sidebar-dropdown">
-                <a href="#">
-                  <i class="far fa-gem"></i>
-                  <span>Components</span>
-                </a>
-                <div class="sidebar-submenu">
-                  <ul>
-                    <li>
-                      <a href="#">General</a>
-                    </li>
-                    <li>
-                      <a href="#">Panels</a>
-                    </li>
-                    <li>
-                      <a href="#">Tables</a>
-                    </li>
-                    <li>
-                      <a href="#">Icons</a>
-                    </li>
-                    <li>
-                      <a href="#">Forms</a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="sidebar-dropdown">
-                <a href="#">
-                  <i class="fa fa-chart-line"></i>
-                  <span>Charts</span>
-                </a>
-                <div class="sidebar-submenu">
-                  <ul>
-                    <li>
-                      <a href="#">Pie chart</a>
-                    </li>
-                    <li>
-                      <a href="#">Line chart</a>
-                    </li>
-                    <li>
-                      <a href="#">Bar chart</a>
-                    </li>
-                    <li>
-                      <a href="#">Histogram</a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="sidebar-dropdown">
-                <a href="#">
-                  <i class="fa fa-globe"></i>
-                  <span>Maps</span>
-                </a>
-                <div class="sidebar-submenu">
-                  <ul>
-                    <li>
-                      <a href="#">Google maps</a>
-                    </li>
-                    <li>
-                      <a href="#">Open street map</a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="header-menu">
-                <span>Extra</span>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="fa fa-book"></i>
-                  <span>Documentation</span>
-                  <span class="badge badge-pill badge-primary">Beta</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="fa fa-calendar"></i>
-                  <span>Calendar</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="fa fa-folder"></i>
-                  <span>Examples</span>
-                </a>
-              </li>
-            </ul>
-          </div>
+          
           <!-- sidebar-menu  -->
         </div>
         <!-- sidebar-content  -->
@@ -367,7 +233,7 @@
       </nav>
       <!-- ****************************************** TOP MENU ************************************************ -->
       <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-        <a class="navbar-brand mr-auto mr-lg-0" href="#">Offcanvas navbar</a>
+        <a class="navbar-brand mr-auto mr-lg-0" href="#">Student Tracer</a>
         <button
           class="navbar-toggler p-0 border-0"
           type="button"
@@ -428,23 +294,22 @@
 
       <!-- ****************************************** CONTENT  ************************************************ -->
       <main class="page-content">
-        <div class="py-5 text-center">
+        <div class="text-center">
           <img
             class="d-block mx-auto mb-4"
-            src="assets/brand/bootstrap-solid.svg"
+            src="../assets/brand/bootstrap-solid.svg"
             alt=""
             width="72"
             height="72"
           />
-          
-          <h2>Enregistrer vos notes</h2>
+          <h2>Edition des notes</h2>
         </div>
 		
 		<!-- BODY -->
         <div class="row">
           <!--Formulaire1-->
           <form method="GET" 
-          		action="EnregistrementNote" 
+          		action="edit" 
           		class="needs-validation w-100" 
           		style="margin-bottom: 5rem;">
           	<div class="row border-bottom border-dark">
@@ -457,7 +322,6 @@
 	                  </h3>
 	                  <div class="col-md-3 mb-3">
 		                    <div class="input-group">
-		                    
 		                      <select
 		                      	onchange="this.form.submit()"
 		                        id="sequence"
@@ -500,8 +364,8 @@
 		                        	<option class="salle-options" 
 		                        			name="${salle.key}" 
 		                        			value="${salle.key}"
-			                        		${salle.key == selectedSalleId ? 'selected' : ''}>
-		                        			${ salle.value.classe.libelle }-${salle.value.libelle}</option>
+			                        		${ salle.key == selectedSalleId ? 'selected' : ''}>
+		                        			${ salle.value.classe.libelle }-${ salle.value.libelle }</option>
 		                        </ng:forEach>
 		                      </select>
 		                    </div>
@@ -514,7 +378,7 @@
 			
 		  <!--Formulaire2-->
           <form	method="POST"
-            action="EnregistrementNote?sequence=${ selectedSequenceId }&salle=${ selectedSalleId }"
+            action="edit?sequence=${ selectedSequenceId }&salle=${ selectedSalleId }"
             id="needs-validation"
             class="needs-validation w-100"
             novalidate
@@ -522,13 +386,37 @@
           	<div class="row">
 	            <ng:choose>
 				  <ng:when test="${ salle_est_definie == false || sequence_est_definie == false }">
-				    <div class="row w-100 text-center">
-				    	<h1 class="w-100 text-danger bg-primary mt-3">SELECTIONNER UNE SALLE</h1>
+				    <div class="row w-100 text-center bg-dark rounded">
+				    	<h1 class="w-100 text-info mt-3">SELECTIONNER UNE SALLE ET UNE SEQUENCE</h1>
 				    </div>
 				  </ng:when>
-				  <ng:when test="${ salle_est_definie == true  && sequence_est_definie == true  }">
+				  <ng:when test="${ salle_est_definie == true  && sequence_est_definie == true && notesAreNotSet == true }">
+				    <div class="container w-100 text-center bg-dark rounded">
+				    	<h1 class="w-100 text-primary  mt-3 text-uppercase">
+				    		AUCUNE NOTE ENREGISTREE POUR LA  ${ sequences[id_sequence].libelle } EN 
+							${ salles[id_salle].classe.libelle }-${ salles[id_salle].libelle }					    	
+				    	</h1>
+				    	<div class="row">
+				    		<a href="ajout?sequence=${ selectedSequenceId }&salle=${ selectedSalleId }"
+					    	   class="btn btn-info col-md-2 offset-md-5" 
+					    	   role="button" 
+					    	   aria-controls="collapseExample">Ajouter</a>
+				    	</div>
+				    </div>
+				  </ng:when>
+				  <ng:when test="${ salle_est_definie == true  && sequence_est_definie == true && notesAreNotSet == false }">
+				  	
+	            	<!-- DATE -->
+	            	<div class="row w-100 mb-2" style="margin-top: -2rem;">
+	            	  <ng:if test="${ date_enregistrement != 'faux' }">
+				  		<div class="col-md-12 order-md-1  text-right">
+							<u class="">Derniere modification</u>: 
+							<span class="small font-weight-bold">${ date_enregistrement }</span>
+				  		</div>
+				  	  </ng:if>
+				  	</div>
 				  	<!--Entete-->
-		            <div class="row w-100 mb-2">
+		            <div class="row w-100 mb-2" style="margin-top: 2rem;">
 		              <div class="col-md-4 order-md-1 font-weight-bold .small">NOMS ET PRENOMS</div>
 		              <div class="col-md-4 order-md-1 font-weight-bold">NOTES</div>
 		              <div class="col-md-4 order-md-1 font-weight-bold">APPRECIATIONS</div>
@@ -536,11 +424,11 @@
 		            
 	            	<!--Liste des eleve-->
 				  	<div class="row w-100 .text-left">
-				  	<ng:forEach items="${ eleves }" var="eleve">
+				  	  <ng:forEach items="${ notes }" var="note">
 			            <div class="col-md-12 w-100 mb-1">
 			               <div class="row w-100 justify-content-start ">
 			                  <div class="col-md-4 order-md-1 align-bottom text-uppercase">
-			                  		${ eleve.value.nom_eleve }  ${ eleve.value.prenom_eleve }</div>
+			                  		${ note.value.eleve.nom_eleve }  ${ note.value.eleve.prenom_eleve }</div>
 			                  <div class="col-md-4 order-md-1" id="champ-note">
 			                    <input
 			                      type="text"
@@ -549,7 +437,8 @@
 			                      class="form-control"
 			                      id="note"
 			                      placeholder="Note"
-			                      name="note-${eleve.key}"
+			                      name="note-${note.value.id_note}"
+			                      value="${note.value.note}"
 			                      required
 			                    />
 			                  </div>
@@ -559,7 +448,8 @@
 			                      class="form-control"
 			                      id="appreciation"
 			                      placeholder="Appreciation"
-			                      name="appreciation-${eleve.key}"
+			                      name="appreciation-${note.key}"
+			                      value="${note.value.appreciation}"
 			                      required
 			                    />
 			                  </div>
@@ -567,9 +457,8 @@
 			              </div>
 		              </ng:forEach>
 	            	</div>
-	            	
 	            	<!--Button Start MODAL-->
-		            <div class="row" style="width: 100%; margin-top: 3rem;">
+		            <div class="row" style="width: 100%; margin-top: 2rem;">
 		              <hr class="mb-4" />
 		              <button
 		                id="startModal"
@@ -578,7 +467,7 @@
 		                data-toggle="modal" 
 		                data-target="#myModal"
 		              >
-		                  Enregistrer les notes
+		                  EDITER LES NOUVELLES NOTES
 		              </button>
 		            </div>
       				<!-- ******************************************  MODAL 1 ******************************************* -->
@@ -592,9 +481,9 @@
 					        </button>
 					      </div>
 					      <div class="modal-body font-weight-bold text-center text-white">
-							Vous etes sur le point d'enregistrer les notes
-							<ng:out value="de la ${sequences[id_salle].libelle}"/>
-				          	<ng:out value="en ${salles[id_salle].classe.libelle}-${salles[id_salle].libelle}"/>
+							Vous etes sur le point de modifier les notes
+							<ng:out value="de la ${ sequences[id_sequence].libelle }"/>
+				          	<ng:out value="en ${ salles[id_salle].classe.libelle }-${ salles[id_salle].libelle }"/>
 					      </div>
 					      <div class="modal-footer">
 					        <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
@@ -612,11 +501,11 @@
         <script>
           window.jQuery ||
             document.write(
-              '<script src="assets/jquery-3.5.1.slim.min.js"><\/script>'
+              '<script src="../assets/jquery-3.5.1.slim.min.js"><\/script>'
             );
         </script>
-        <script src="assets/dist/js/bootstrap.bundle.js"></script>
-        <script src="scripts/offcanvas.js"></script>
+        <script src="../assets/dist/js/bootstrap.bundle.js"></script>
+        <script src="../scripts/offcanvas.js"></script>
       </main>
     
       <!-- ****************************************** ERROR MODAL 1 ******************************************* -->
@@ -638,7 +527,7 @@
 		      <div class="modal-body text-info">
 				  <ng:if test="${ notesAreValid == 'YES' }">
 				  	<div class="font-weight-bold text-center text-success">
-				  		Les notes ont ete enregistrees avec succes.
+				  		Les notes ont ete edites avec succes.
 				  	</div>
 				  </ng:if>
 				  <ng:if test="${ notesAreValid == 'NO' }">
@@ -653,7 +542,7 @@
 		    </div>
 		  </div>
 	  </div>
-       <ng:if test="${ (notesAlreadyExist != 'YES') && (notesAreValid == 'YES' || notesAreValid == 'NO') }">
+      <ng:if test="${ (notesAlreadyExist != 'YES') && (notesAreValid == 'YES' || notesAreValid == 'NO') }">
 	  	<script>
 	  		$('#errorModal').modal('show'); 
 	  	</script>
@@ -664,60 +553,25 @@
 	  	%>
 	  </ng:if>
       <!-- ****************************************** EXISTANCE MODAL 1 *************************************** -->
-	  <div class="modal fade" 
-	  	   id="existanceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		  <div class="modal-dialog modal-dialog-centered">
-		    <div class="modal-content">
-		      <div class="modal-header">
-				<ng:if test="${ notesAlreadyExist == 'YES' }">
-		        	<h5 class="modal-title" id="exampleModalLabel text-primary">NOTES NON ENREGISTREES</h5>
-				</ng:if>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div class="modal-body text-info">
-				  <ng:if test="${ notesAlreadyExist == 'YES' }">
-				  	<div class="font-weight-bold text-center text-warning">
-				  		Cette operation a deja ete effectuee.
-				  	</div>
-				  </ng:if>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Compris</button>
-		      </div>
-		    </div>
-		  </div>
-	  </div>
-	  <ng:if test="${ notesAlreadyExist == 'YES' }">
-	  	<script>
-	  		$('#existanceModal').modal('show'); 
-	  	</script>
-	  	<!--  EXECUTER UN CODE JAVA POUR SET A 'NONE' apres l'execution du javascript -->
-	  	<%	
-	  		instanceNote.setNotesValidityToNone();	
-  			instanceNote.setNotesExistancyToNone();
-	  	%>
-	  </ng:if>
 	  
     </div>
     <!-- page-wrapper -->
     <!--
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
+	    <script
+	      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	      crossorigin="anonymous"
+	    ></script>
+	    <script
+	      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	      crossorigin="anonymous"
+	    ></script>
     -->
-    <script src="assets/jquery-3.5.1.slim.min.js"></script>
+    <script src="../assets/jquery-3.5.1.slim.min.js"></script>
 
-    <script src="assets/dist/js/bootstrap.min.js"></script>
-    <script src="assets/jquery-3.5.1.min.js"></script>
+    <script src="../assets/dist/js/bootstrap.min.js"></script>
+    <script src="../assets/jquery-3.5.1.min.js"></script>
 
     <!--PROPRE A LA PAGE-->
     <script
@@ -728,10 +582,10 @@
     <script>
       window.jQuery ||
         document.write(
-          '<script src="assets/js/vendor/jquery.slim.min.js"><\/script>'
+          '<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>'
         );
     </script>
-    <script src="assets/dist/js/bootstrap.bundle.js"></script>
-    <script src="scripts/enregistrement_personnel.js"></script>
+    <script src="../assets/dist/js/bootstrap.bundle.js"></script>
+    <script src="../scripts/enregistrement_personnel.js"></script>
   </body>
 </html>

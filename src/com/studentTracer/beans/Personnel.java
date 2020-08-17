@@ -5,11 +5,14 @@ public class Personnel {
 	private String matricule;
 	private String nom;
 	private String prenom;
+	private String photo_url;
 	private String sexe;
 	private String login;
 	private String mot_de_passe;
 	private String date_naissance;
 	private String lieu_de_naissance;
+	private Specialite specialite;
+	
 	public Long getId() {
 		return id;
 	}
@@ -64,6 +67,19 @@ public class Personnel {
 	public void setLieu_de_naissance(String lieu_de_naissance) {
 		this.lieu_de_naissance = lieu_de_naissance;
 	}
+	public String getPhoto_url() {
+		return photo_url;
+	}
+	public void setPhoto_url(String photo_url) {
+		this.photo_url = photo_url;
+	}
+	public Specialite getSpecialite() {
+		return specialite;
+	}
+	public void setSpecialite(Specialite specialite) {
+		this.specialite = specialite;
+	}
+	
 	
 	
 
